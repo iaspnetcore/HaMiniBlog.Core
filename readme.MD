@@ -47,6 +47,7 @@ sudo systemctl restart kestrel-home-assisant.msly.cn.service
 
 
 --------------------tool.msly.cn debug-----------------------------
+
 sudo systemctl stop kestrel-home-assisant.msly.cn.service
 
 cd /
@@ -62,6 +63,8 @@ cd /var/www/msly/Miniblog.Core/src
 dotnet publish -c release
 
 
+sudo cp -R /var/www/msly/Miniblog.Core/src/bin/release/net6.0/publish/wwwroot/Posts/* /var/www/msly/Miniblog.Core/src/wwwroot/Posts
+
 cd /var/www/msly/Miniblog.Core/src/bin/release/net6.0/publish/
 
 dotnet Miniblog.Core.dll --urls http://localhost:4699
@@ -70,6 +73,8 @@ dotnet Miniblog.Core.dll --urls http://localhost:4699
 4.批处理
 
 sudo systemctl stop kestrel-home-assisant.msly.cn.service
+
+sudo cp -R /var/www/msly/Miniblog.Core/src/bin/release/net6.0/publish/wwwroot/Posts/* /var/www/msly/Miniblog.Core/src/wwwroot/Posts
 
 cd /var/www/msly/Miniblog.Core/src
 
