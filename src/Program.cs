@@ -35,7 +35,12 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddSingleton<IUserServices, BlogUserServices>();
-builder.Services.AddSingleton<IBlogService, FileBlogService>();
+//old
+//builder.Services.AddSingleton<IBlogService, FileBlogService>();
+
+//new
+builder.Services.AddSingleton<IBlogService, FileBlogJsonDataService>();
+
 builder.Services.Configure<BlogSettings>(builder.Configuration.GetSection("blog"));
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddMetaWeblog<MetaWeblogService>();

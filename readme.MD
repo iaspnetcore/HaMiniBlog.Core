@@ -3,11 +3,11 @@
 
 ## source project
 
-remote: https://github.com/iaspnetcore/HaMiniBlog.Core.git
+remote: https://github.com/iaspnetcore/HaMiniBlog.Core/tree/miniblog.core-ipv6
 
 local:  F:\developer_msly\Miniblog.Core
 
-domain:home-assisant.msly.cn
+domain:www.ipv6address.info
 
 host:vweb2 /var/www/msly/Miniblog.Core/src
 
