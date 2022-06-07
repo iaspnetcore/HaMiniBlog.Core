@@ -1,40 +1,78 @@
-﻿@model IAsyncEnumerable<Post>
-@inject IOptionsSnapshot<BlogSettings> settings
-@{
+﻿
+
+@model IAsyncEnumerable<Post>
+@inject IOptionsSnapshot<BlogSettings>
+    settings
+    @{
     int currentPage = int.Parse(ViewContext.RouteData.Values[Constants.page] as string ?? "0");
 
     int totalPosts;
     totalPosts = int.TryParse(ViewData[Constants.TotalPostCount].ToString(), out totalPosts) ? totalPosts : 0;
 
     int totalPages = (totalPosts / this.settings.Value.PostsPerPage) - (totalPosts % this.settings.Value.PostsPerPage == 0 ? 1 : 0);
-}
 
-@await foreach (var post in Model)
-{
+    var ipv6address = this._httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+    }
+
+    <article class="post container" itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+        <header>
+            <h1 itemprop="name headline">IPV6 Address Info</h1>
+
+        </header>
+
+        <div itemprop="articleBody mainEntityOfPage" cdnify>
+            @if (string.IsNullOrEmpty(ipv6address))
+		{
+            <b>your Ipv4 Address not detected</b>
+            <br />
+            <b>your Ipv6 Address not detected</b>
+		}
+		else if (ipv6address.Length < 14)
+		{
+            <b>your Ipv4 Address is:	@(ipv6address)</b>
+            <br />
+            <b>your Ipv6 Address not detected</b>
+		}
+		else
+		{
+            <b>	your Ipv6 Address is:	@(ipv6address)</b>
+            <br />
+            <b>your Ipv4 Address not detected</b>
+		}
+
+
+        </div>
+
+        <footer>
+        </footer>
+    </article>
+
+    @await foreach (var post in Model)
+    {
     await Html.RenderPartialAsync("Post.cshtml", post);
-}
+    }
 
-<nav class="pagination container" aria-label="Pagination">
-    @if ((await Model.AnyAsync()) && currentPage < totalPages)
+    <nav class="pagination container" aria-label="Pagination">
+        @if ((await Model.AnyAsync()) && currentPage < totalPages)
     {
         <a rel="prev" href="@ViewData[Constants.prev]" title="Older posts">&laquo; Older</a>
     }
-    @if (currentPage > 0)
+        @if (currentPage > 0)
     {
         <a rel="next" href="@ViewData[Constants.next]" title="Newer posts">Newer &raquo;</a>
     }
-    <br /><br />
+        <br /><br />
 
-    @section Head {
-        @if ((await Model.AnyAsync()) && currentPage < totalPages)
+        @section Head {
+            @if ((await Model.AnyAsync()) && currentPage < totalPages)
         {
             <link rel="prev" href="@ViewData[Constants.prev]" />
         }
-        @if (currentPage > 0)
+            @if (currentPage > 0)
         {
             <link rel="next" href="@ViewData[Constants.next]" />
         }
-    }
-</nav>
+        }
+    </nav>
 
-@{await Html.RenderPartialAsync("_SocialSharing", ViewData[Constants.Title]);}
+    @{await Html.RenderPartialAsync("_SocialSharing", ViewData[Constants.Title]);}

@@ -35,11 +35,10 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddSingleton<IUserServices, BlogUserServices>();
-//old
-//builder.Services.AddSingleton<IBlogService, FileBlogService>();
 
-//new
-builder.Services.AddSingleton<IBlogService, FileBlogJsonDataService>();
+builder.Services.AddSingleton<IBlogService, FileBlogService>();
+
+
 
 builder.Services.Configure<BlogSettings>(builder.Configuration.GetSection("blog"));
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
