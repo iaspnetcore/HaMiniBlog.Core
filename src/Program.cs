@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.HttpOverrides; // for  ForwardedHeaders.XForwardedHost 
+
 using Miniblog.Core;
 using Microsoft.Extensions.Hosting;
 
@@ -31,8 +34,30 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddW3CLogging(logging =>
+{
+    // Log all W3C fields
+    logging.LoggingFields = W3CLoggingFields.All;
 
+    ////logging.FileSizeLimit = 5 * 1024 * 1024;
+    ////logging.RetainedFileCountLimit = 2;
+    ////logging.FileName = "MyLogFile";
+    ////logging.LogDirectory = @"C:\logs";
+    //logging.FlushInterval = TimeSpan.FromSeconds(2);
+});
 
+//custom extend
+//come from:https://soapfault.com/2020/02/24/asp-net-core-reverse-proxy-and-x-forwarded-headers/
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedHost |     //Not included in the defaults using ASPNETCORE_FORWARDEDHEADERS_ENABLED
+        ForwardedHeaders.XForwardedFor |
+        ForwardedHeaders.XForwardedProto;
+    options.ForwardLimit = 2;
+    options.KnownNetworks.Clear(); //In a real scenario we would add the real proxy network(s) here based on a config parameter
+    options.KnownProxies.Clear();  //In a real scenario add the real proxy here based on a config parameter
+});
 
 builder.Services.AddSingleton<IUserServices, BlogUserServices>();
 
@@ -97,6 +122,8 @@ builder.Services.AddWebOptimizer(
 
 var app = builder.Build();
 
+app.UseW3CLogging();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -104,6 +131,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
 
 app.UseHttpsRedirection();
 
@@ -138,6 +167,50 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Blog}/{action=Index}/{id?}");
 
+//cone from:https://soapfault.com/2020/02/24/asp-net-core-reverse-proxy-and-x-forwarded-headers/
+app.MapGet("/ipaddress", async context =>
+{
+    //Output the relevant properties as the framework sees it
+    await context.Response.WriteAsync($"---As the application sees it{Environment.NewLine}");
+    await context.Response.WriteAsync($"HttpContext.Connection.RemoteIpAddress : {context.Connection.RemoteIpAddress}{Environment.NewLine}");
+    await context.Response.WriteAsync($"HttpContext.Connection.RemoteIpPort : {context.Connection.RemotePort}{Environment.NewLine}");
+    await context.Response.WriteAsync($"HttpContext.Request.Scheme : {context.Request.Scheme}{Environment.NewLine}");
+    await context.Response.WriteAsync($"HttpContext.Request.Host : {context.Request.Host}{Environment.NewLine}");
+
+    //Output relevant request headers (starting with an X)
+    await context.Response.WriteAsync($"{Environment.NewLine}---Request Headers starting with X{Environment.NewLine}");
+    foreach (var header in context.Request.Headers.Where(h => h.Key.StartsWith("X", StringComparison.OrdinalIgnoreCase)))
+    {
+        await context.Response.WriteAsync($"Request-Header {header.Key}: {header.Value}{Environment.NewLine}");
+    }
+
+    //come from:https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-5.0
+
+    // Request method, scheme, and path
+    await context.Response.WriteAsync(
+        $"Request Method: {context.Request.Method}{Environment.NewLine}");
+    await context.Response.WriteAsync(
+        $"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
+    await context.Response.WriteAsync(
+        $"Request Path: {context.Request.Path}{Environment.NewLine}");
+
+    // Headers
+    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
+
+    foreach (var header in context.Request.Headers)
+    {
+        await context.Response.WriteAsync($"{header.Key}: " +
+            $"{header.Value}{Environment.NewLine}");
+    }
+
+    await context.Response.WriteAsync(Environment.NewLine);
+
+
+
+    // Connection: RemoteIp
+    await context.Response.WriteAsync(
+        $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
+});
 
 
 app.Run();
