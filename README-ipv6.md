@@ -55,7 +55,7 @@ sudo systemctl stop kestrel-wwwipv6addressinfo.service
 
 cd  /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src
 
-dotnet run --urls http://localhost:6000
+dotnet run --urls http://localhost:7600
 
 ------  release  ----
 
@@ -67,16 +67,16 @@ dotnet publish -c Release
 
 sudo cp -R /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/release/net6.0/publish/wwwroot/Posts/* /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/wwwroot/Posts
 
-cd /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/release/net6.0/publish/
+cd  /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/Release/net6.0/publish/
 
-dotnet Miniblog.Core.dll --urls http://localhost:6000
+dotnet Miniblog.Core.dll --urls http://localhost:7600
 
 
 4.批处理
 
 sudo systemctl stop kestrel-wwwipv6addressinfo.service
 
-sudo cp -R /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/release/net6.0/publish/wwwroot/Posts/* /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/wwwroot/Posts
+sudo cp -R /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/Release/net6.0/publish//wwwroot/Posts/* /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/wwwroot/Posts
 
 cd /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src
 
@@ -96,8 +96,8 @@ kestrel-wwwipv6addressinfo.service
 Description=www.ipv6address.info App running on Ubuntu
 
 [Service]
-WorkingDirectory=/var/www/Miniblog.Core-wwwipv6addressinfo/IPV6/Miniblog.Core-master/src/bin/release/net5.0/publish
-ExecStart=/usr/bin/dotnet /var/www/Miniblog.Core-wwwipv6addressinfo/IPV6/Miniblog.Core-master/src/bin/release/net5.0/publish/Miniblog.Core.dll --urls http://127.0.0.1:6000
+WorkingDirectory= /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/Release/net6.0/publish/
+ExecStart=/usr/bin/dotnet /var/www/Miniblog.Core-wwwipv6addressinfo/IPV6/Miniblog.Core-master/src/bin/release/net5.0/publish/Miniblog.Core.dll --urls http://127.0.0.1:7600
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
