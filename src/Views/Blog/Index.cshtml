@@ -13,39 +13,50 @@
     int totalPages = (totalPosts / this.settings.Value.PostsPerPage) - (totalPosts % this.settings.Value.PostsPerPage == 0 ? 1 : 0);
 
     var ipv6address = this._httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+
+    var headers = this._httpContextAccessor.HttpContext.Request.Headers;
+
+    if (headers.ContainsKey("X-Forwarded-For"))
+    {
+        ipv6address = headers["X-Forwarded-For"].ToString().Split(',', StringSplitOptions.RemoveEmptyEntries)[0];
+    }
+
+    ipv6address = headers["CF-Connecting-IP"].ToString();
+
+
 }
 
 <article class="post container" itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
-	<header>
-		<h1 itemprop="name headline">IPV6 Address Info</h1>
+    <header>
+        <h1 itemprop="name headline">IPV6 Address Info</h1>
 
-	</header>
+    </header>
 
-	<div itemprop="articleBody mainEntityOfPage" cdnify>
-		@if (string.IsNullOrEmpty(ipv6address))
-		{
-			<b>your Ipv4 Address not detected</b>
-			<br />
-			<b>your Ipv6 Address not detected</b>
-		}
-		else if (ipv6address.Length < 14)
-		{
-			<b>your Ipv4 Address is:	@(ipv6address)</b>
-			<br />
-			<b>your Ipv6 Address not detected</b>
-		}
-		else
-		{
-			<b>	your Ipv6 Address is:	@(ipv6address)</b>
-			<br />
-			<b>your Ipv4 Address not detected</b>
-		}
+    <div itemprop="articleBody mainEntityOfPage" cdnify>
+        @if (string.IsNullOrEmpty(ipv6address))
+        {
+            <b>your Ipv4 Address not detected</b>
+            <br />
+            <b>your Ipv6 Address not detected</b>
+        }
+        else if (ipv6address.Length < 14)
+        {
+            <b>your Ipv4 Address is:	@(ipv6address)</b>
+            <br />
+            <b>your Ipv6 Address not detected</b>
+        }
+        else
+        {
+            <b>	your Ipv6 Address is:	@(ipv6address)</b>
+            <br />
+            <b>your Ipv4 Address not detected</b>
+        }
 
 
-	</div>
+    </div>
 
-	<footer>
-	</footer>
+    <footer>
+    </footer>
 </article>
 
 @await foreach (var post in Model)

@@ -54,9 +54,9 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
         ForwardedHeaders.XForwardedHost |     //Not included in the defaults using ASPNETCORE_FORWARDEDHEADERS_ENABLED
         ForwardedHeaders.XForwardedFor |
         ForwardedHeaders.XForwardedProto;
-    options.ForwardLimit = 2;
-    options.KnownNetworks.Clear(); //In a real scenario we would add the real proxy network(s) here based on a config parameter
-    options.KnownProxies.Clear();  //In a real scenario add the real proxy here based on a config parameter
+    options.ForwardLimit = 4;
+    //options.KnownNetworks.Clear(); //In a real scenario we would add the real proxy network(s) here based on a config parameter
+    //options.KnownProxies.Clear();  //In a real scenario add the real proxy here based on a config parameter
 });
 
 builder.Services.AddSingleton<IUserServices, BlogUserServices>();
@@ -122,7 +122,16 @@ builder.Services.AddWebOptimizer(
 
 var app = builder.Build();
 
+//call UseForwardedHeaders before diagnostics https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-6.0
+app.UseForwardedHeaders();
+
 app.UseW3CLogging();
+
+app.MapGet("/first-w3c-log", (IWebHostEnvironment webHostEnvironment) =>
+{
+    return Results.Ok(new { PathToWrite = webHostEnvironment.ContentRootPath });
+})
+.WithName("GetW3CLog");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -161,6 +170,10 @@ app.UseWebMarkupMin();
 
 app.UseRouting();
 
+
+
+
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -195,12 +208,18 @@ app.MapGet("/ipaddress", async context =>
         $"Request Path: {context.Request.Path}{Environment.NewLine}");
 
     // Headers
-    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
+    await context.Response.WriteAsync($"---all Request Headers:{Environment.NewLine}");
 
     foreach (var header in context.Request.Headers)
     {
         await context.Response.WriteAsync($"{header.Key}: " +
             $"{header.Value}{Environment.NewLine}");
+
+        
+        if (header.Key.Contains("X-Forwarded-For"))
+        {          
+            await context.Response.WriteAsync($"{header.Key}:{header.Value.ToString() } {header.Value.Count.ToString()} {Environment.NewLine}" );
+        }
     }
 
     await context.Response.WriteAsync(Environment.NewLine);
@@ -209,7 +228,7 @@ app.MapGet("/ipaddress", async context =>
 
     // Connection: RemoteIp
     await context.Response.WriteAsync(
-        $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
+        $"context.Connection.RemoteIpAddress: {context.Connection.RemoteIpAddress}");
 });
 
 
