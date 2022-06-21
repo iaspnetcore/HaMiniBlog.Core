@@ -15,6 +15,15 @@ host:vweb2 /var/www/msly/Miniblog.Core/src
 
 tinymce: 4.8.0 (2018-06-27)
 
+publish first
+
+~~~
+cd /var/www/Miniblog.Core-wwwipv6addressinfo/Miniblog.Core/src/bin/Release/net6.0/publish/wwwroot
+
+chmod ./posts 777
+
+~~~
+
 
 ## Useful links
 
