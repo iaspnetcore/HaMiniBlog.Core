@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Git for Home Assistant Configuration</title>
+  <slug>Git-Home-Assistant-Configuration</slug>
+  <pubDate>2022-11-22T12:15:48.283Z</pubDate>
+  <lastModified>2022-11-22T12:25:20.088Z</lastModified>
+  <excerpt>Git for Home Assistant Configuration</excerpt>
+  <content>&lt;p&gt;Git for Home Assistant Configuration&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Step 1: Installing and Initializing Git on Raspberry Pi&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;a href="https://www.msly.cn/boards/topic/13385/git/page/1#17673" target="_blank" rel="noopener"&gt;https://www.msly.cn/boards/topic/13385/git/page/1#17673&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;Step 2: Creating .gitignore&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;a href="https://www.msly.cn/boards/topic/13385/git/page/1#18749" target="_blank" rel="noopener"&gt;https://www.msly.cn/boards/topic/13385/git/page/1#18749&lt;/a&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;Step 3:&amp;nbsp;&lt;/strong&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;Initialize the Git repo&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;br style="margin: 0px; padding: 0px; box-sizing: border-box; font-weight: 400;" /&gt;&lt;a href="https://www.msly.cn/boards/topic/13385/git/page/1#18750" target="_blank" rel="noopener"&gt;https://www.msly.cn/boards/topic/13385/git/page/1#18750&lt;/a&gt;&lt;br style="margin: 0px; padding: 0px; box-sizing: border-box; font-weight: 400;" /&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;Step 3: Creating Repository on GitHub&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;a href="https://www.msly.cn/boards/topic/13385/git/page/1#18751" target="_blank" rel="noopener"&gt;https://www.msly.cn/boards/topic/13385/git/page/1#18751&lt;/a&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;Step 5:&amp;nbsp; initial push to GitHub&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;a href="https://www.msly.cn/boards/topic/13385/git/page/1#18754" target="_blank" rel="noopener"&gt;https://www.msly.cn/boards/topic/13385/git/page/1#18754&lt;/a&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;git add&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="csharpcode" style="margin-top: 10px; margin-bottom: 10px; padding: 10px; box-sizing: border-box; white-space: normal; overflow-wrap: break-word; border: 1px dashed #cccccc; font-family: 'Courier New', Courier, monospace;"&gt;git commit&lt;/pre&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box;"&gt;git push&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories></categories>
+  <tags></tags>
+  <comments></comments>
+</post>

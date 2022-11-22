@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>How To Install and uninstall reinstall Nginx on raspberry pi（raspberry pi 3B+）</title>
+  <slug>home-assistant-remote-access-part-3</slug>
+  <pubDate>2022-03-30T17:45:11.739Z</pubDate>
+  <lastModified>2022-03-30T17:51:31.510Z</lastModified>
+  <excerpt>How To Install and uninstall reinstall Nginx on raspberry pi（raspberry pi 3B+）</excerpt>
+  <content>&lt;p&gt;How To Install and uninstall reinstall Nginx on raspberry pi（raspberry pi 3B+）&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;&amp;nbsp;Install Nginx&lt;/h2&gt;
+&lt;p&gt;os：Raspbian GNU/Linux 11 (bullseye)&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;# lsb_release -a&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;root@raspberrypi:~# lsb_release -a
+No LSB modules are available.
+Distributor ID:	Raspbian
+Description:	Raspbian GNU/Linux 11 (bullseye)
+Release:	11
+Codename:	bullsey&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Use apt-get to install Nginx. The installer creates a systemd init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu as follow:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;sudo apt update
+sudo apt install nginx&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;...
+正在设置 libnginx-mod-http-xslt-filter (1.18.0-6.1) ...
+正在设置 libnginx-mod-http-geoip (1.18.0-6.1) ...
+正在设置 libnginx-mod-mail (1.18.0-6.1) ...
+正在设置 libnginx-mod-http-image-filter (1.18.0-6.1) ...
+正在设置 libnginx-mod-stream (1.18.0-6.1) ...
+正在设置 libnginx-mod-stream-geoip (1.18.0-6.1) ...
+正在设置 nginx-core (1.18.0-6.1) ...
+Upgrading binary: nginx.
+正在设置 nginx (1.18.0-6.1) ...
+正在处理用于 man-db (2.9.4-2) 的触发器 ..
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;nginx -v&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;nginx version: nginx/1.18.0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Uninstall &amp;nbsp;Nginx on Ubuntu 18.04（aliyun）&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;step 1：&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;sudo apt-get remove nginx nginx-common # Removes all but config files.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;sudo apt-get purge nginx nginx-common # Removes everything&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;step 2：&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;sudo apt-get autoremove # After using any of the above commands, use this in order to remove dependencies used by nginx which are no longer required.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Reinstall&lt;/h2&gt;
+&lt;p&gt;To recreate it, first uninstall using purge to remove even configuration files and records:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;# Run these commands as your normal login (e.g. "michael")
+# Remove any existing versions of nginx
+sudo apt-get remove '^nginx.*$'
+ 
+# Setup a sources.list.d file for the nginx repository
+cat &amp;lt;&amp;lt; 'EOF' | sudo tee /etc/apt/sources.list.d/nginx.list
+deb http://nginx.org/packages/ubuntu/ precise nginx
+deb-src http://nginx.org/packages/ubuntu/ precise nginx
+EOF
+ 
+# Add nginx key
+curl http://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+ 
+# install nginx
+sudo apt-get update &amp;amp;&amp;amp; sudo apt-get -y install nginx&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;then reinstall:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;apt-get install nginx&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>home assistant</category>
+    <category>home assistant remote access</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+    <tag>home assistant remote access</tag>
+  </tags>
+  <comments></comments>
+</post>

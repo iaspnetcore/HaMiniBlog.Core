@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Home Assistant Remote access - duckdns.org</title>
+  <slug>home-assistant-remote-access-part-5</slug>
+  <pubDate>2022-03-29T15:21:35.558Z</pubDate>
+  <lastModified>2022-03-29T15:24:13.763Z</lastModified>
+  <excerpt>Home Assistant Remote access - duckdns.org</excerpt>
+  <content>&lt;p&gt;Home Assistant Remote access - duckdns.org&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Personally I access HA through&lt;/p&gt;
+&lt;p&gt;https://xxx.duckdns.org:8123/lovelace/default_view 1&lt;/p&gt;
+&lt;p&gt;and my config is&lt;/p&gt;
+&lt;p&gt;&lt;img src="/Posts/files/duckdnsorg_637841640955791453.png" alt="duckdnsorg.png" width="679" height="220" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #222222; font-family: Arial, sans-serif; font-size: 15.008px; background-color: #f9f9f9;"&gt;Please note the&amp;nbsp;&lt;/span&gt;&lt;code style="font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 15.008px; color: var(--primary-very-high); background: var(--hljs-bg);"&gt;https&lt;/code&gt;&lt;span style="color: #222222; font-family: Arial, sans-serif; font-size: 15.008px; background-color: #f9f9f9;"&gt;&amp;nbsp;at one place and the&amp;nbsp;&lt;/span&gt;&lt;code style="font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 15.008px; color: var(--primary-very-high); background: var(--hljs-bg);"&gt;http&lt;/code&gt;&lt;span style="color: #222222; font-family: Arial, sans-serif; font-size: 15.008px; background-color: #f9f9f9;"&gt;&amp;nbsp;at the other.&lt;/span&gt;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>home assistant</category>
+    <category>home assistant remote access</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+    <tag>home assistant remote access</tag>
+  </tags>
+  <comments></comments>
+</post>

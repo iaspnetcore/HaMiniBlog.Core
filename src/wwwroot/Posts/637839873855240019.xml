@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>bluetooth speaker is  silent</title>
+  <slug>home-assisant-connect-bluetooth-speaker-part-3</slug>
+  <pubDate>2022-03-27T14:21:29.877Z</pubDate>
+  <lastModified>2022-03-29T04:19:17.801Z</lastModified>
+  <excerpt>bluetooth speaker is  silent
+Getting bluetooth to run is difficult. Bluetooth development is fast, not documented and there are issues with the bluez userspace development in general. [1] So there are a ton of outdated documentation using bluez3 or bluez4. Using Audio with bluez5 requires DBUS and pulseaudio. Pulseaudio 6 supports bluez4 and blue5.</excerpt>
+  <content>&lt;p&gt;I did find that a lot of other people in the Linux community have attempted to connect bluetooth speaker to their PI but not as successfully as I have!&lt;/p&gt;
+&lt;p&gt;My setup allows the device to run headless (without a monitor) from boot and any Bluetooth device can connect and disconnect without an issue. I&amp;rsquo;ve seen a lot of other people with tutorials that make you login via command line first or login to the desktop and setup the Bluetooth connection manually. LAME! The goal of this is to be as similar to a *product* as possible. :) enjoy!&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Troubleshooting&lt;/h2&gt;
+&lt;p&gt;1.There are some applications and games that still don&amp;rsquo;t work with Bluetooth speakers because they directly access the sound system, notably SonicPi.&lt;/p&gt;
+&lt;p&gt;2.We have &lt;strong&gt;&lt;em&gt;three ways&lt;/em&gt;&lt;/strong&gt; to play music through our connected speakers.&lt;/p&gt;
+&lt;p&gt;These three methods for playing audio is Bluetooth, AirPlay, and Spotify Connect.&lt;/p&gt;
+&lt;p&gt;Streaming Audio over Bluetooth-Connecting to your Raspberry Pi speakers over Bluetooth is a straightforward process.&lt;/p&gt;
+&lt;p&gt;balenaSound helps this process by continually broadcasting itself over Bluetooth. Any Bluetooth capable device can connect to our Raspberry Pi and play music through the connected speakers.&lt;/p&gt;
+&lt;p&gt;3.There are &lt;strong&gt;four main Bluetooth profiles&lt;/strong&gt;, as follows: HSP (Handset Profile), HFP (Hands Free Profile), A2DP (Advanced Audio Distribution Profile), and AVRCP (Audio/Video Remote Control Profile).&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The bluetooth standard specifies three audio profiles.The three bluetooth profiles are:&lt;/p&gt;
+&lt;p&gt;A2DP (Advanced Audio Distribution Profile) - high-quality audio playback, appropriate for e.g. listening to music.&lt;/p&gt;
+&lt;p&gt;HSP (HeadSet Profile) - phone-quality audio playback and recording, appropriate for phone calls.&lt;/p&gt;
+&lt;p&gt;HFP (Hands-Free Profile) - same as HSP, but with additional functionality for managing phone calls.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Each of the profiles are further divided into two roles:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;A2DP:&lt;/p&gt;
+&lt;p&gt;Source role - the device that sends audio.&lt;/p&gt;
+&lt;p&gt;Sink role - the device that receives audio.&lt;/p&gt;
+&lt;p&gt;HSP:&lt;/p&gt;
+&lt;p&gt;Audio Gateway role - the device that the headset is connected to. The HSP profile is typically used in phone calls, and this is the device that is connected to the cellular network (for cellular phone calls) or to the internet (for VoIP calls). Typically a cellular phone or a PC.&lt;/p&gt;
+&lt;p&gt;Headset role - the headset, obviously. This is where the speakers and microphone are.&lt;/p&gt;
+&lt;p&gt;HFP:&lt;/p&gt;
+&lt;p&gt;Audio Gateway role - the device that the hands-free device is connected to. The HFP profile is typically used for cellular phone calls, and this is the device that is connected to the cellular network. Typically a cellular phone.&lt;/p&gt;
+&lt;p&gt;Hands-Free Unit role - the device with the speakers and microphone.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;checklist&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;Bluetooth service&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;Bluetooth Adapter Ready&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;step 1:stopping bluetooth.service and starting it in debug mode&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;sudo bluetoothd -d -n ＃以详细模式运行蓝牙&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;# dmesg | grep Bluetooth&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;step 2:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;hciconfig -a ＃查看设备属性&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;hciconfig hci0 up&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.Please note that to correctly work, both HCI interface and bluez5 server must be up &amp;amp; running.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;If your bluetooth speaker is&amp;nbsp; silent：&lt;/p&gt;
+&lt;p&gt;make sure the volume is turned up&lt;/p&gt;
+&lt;p&gt;make sure bluetooth speaker connected&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #24292f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; font-size: 16px;"&gt;If connected but lacking sound&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;make sure bluetooth speaker connected&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;go back to Terminal and start bluetoothctl.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;bluetoothctl&lt;/p&gt;
+&lt;p&gt;Then enter the following command:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;[bluetooth]# info 9A:07:65:B4:21:EC&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;[bluetooth]# info 9A:07:65:B4:21:EC
+Device 9A:07:65:B4:21:EC (public)
+	Name: BT73
+	Alias: BT73
+	Class: 0x00240404
+	Icon: audio-card
+	Paired: yes
+	Trusted: yes
+	Blocked: no
+	Connected: no
+	LegacyPairing: no
+	UUID: Audio Sink                (0000110b-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
+	UUID: Handsfree                 (0000111e-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
+	Modalias: bluetooth:v05D6p000Ad0240
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will list out all the information about your speaker. The screen below shows that the UE Boom is paired, trusted and connected. If any of these indicate &amp;ldquo;no&amp;rdquo; then issue the command again and look for any errors.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>bluetooth speaker</category>
+    <category>speaker</category>
+    <category>home assistant</category>
+  </categories>
+  <tags></tags>
+  <comments></comments>
+</post>

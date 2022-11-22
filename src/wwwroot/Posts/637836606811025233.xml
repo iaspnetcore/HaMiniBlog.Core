@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>home assistant with bluetooth speaker on raspberry pi 3b+</title>
+  <slug>home-assisant-connect-bluetooth-speaker-part-1</slug>
+  <pubDate>2022-03-24T00:48:36.022Z</pubDate>
+  <lastModified>2022-04-03T11:17:45.476Z</lastModified>
+  <excerpt>I have a bluetooth speaker and I want to use it as media player. I have a Intel NUC with Debian and HA core in host mode.
+&lt;p&gt;In this guide, we will be showing you how you can connect bluetooth speaker into a  a Raspberry Pi 3b+&lt;/p&gt;
+
+I searched for this, there are lots of post asking for info. But there is one working solution. all of them are very old thread and dont really have a solution . 
+
+How could I configure it?
+
+This a solution to add bluetooth speaker to home assistant os.alse How to connect bluetooth speaker with hassbian.
+
+&lt;p&gt;Add Bluetooth discovery to Pulse Audio&lt;p&gt;
+
+https://www.instructables.com/Turn-your-Raspberry-Pi-into-a-Portable-Bluetooth-A/</excerpt>
+  <content>&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;In this tutorial we&amp;rsquo;ll take a look at hooking up a Raspberry Pi to a Bluetooth speaker. This enables you to play music wirelessly from your Raspberry Pi, turning it into an effective media centre.&lt;/p&gt;
+&lt;p&gt;In this article I&amp;rsquo;m going to demonstrate you all of these Home Assistant media integrations, but first I will show you the integrated browser player and how to upload media files, so the Home Assistant Media player can see them and play them.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;You should be able to follow this Bluetooth audio tutorial with any Bluetooth-enabled Raspberry Pi.&lt;/p&gt;
+&lt;h2&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;I'm thinking of using it as a warning system if a door sensor reports unauthorized access or play a welcome song when I arrive home. using it as a simple music player streamed through HA.&lt;/p&gt;
+&lt;p&gt;You could play music through it or also send audio notifications if you have the pre-recorded files.&lt;/p&gt;
+&lt;p&gt;I have a bluetooth speaker and I want to use it as media player. I have a Raspberry Pi 3B+ with Debian and HA core in host mode.&lt;/p&gt;
+&lt;p&gt;I searched for this, there are lots of post asking for info. But there is one working solution. all of them are very old thread and dont really have a solution .&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;How could I configure it?&lt;/p&gt;
+&lt;p&gt;this a solution to add bluetooth speaker to home assistant os.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;Audio source (i.e. test.wav on Raspberry PI) 
+                |
+                v
+              hci0 &amp;lt;- bluez5 service
+                |
+                v
+
+ (((  Wireless Bluetooth Channel  )))
+                |
+                v
+           bluetooth Speaker
+                |
+                v
+       bluetooth Speaker Audio Interface
+                |
+                v
+             Speakers&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;A possible solution would be to containerize the Bluetooth confgiuration, speaker setup and mpd configuration.&lt;/p&gt;
+&lt;p&gt;First,&amp;nbsp; we need to make sure that Bluetooth is enabled and running:.&lt;/p&gt;
+&lt;p&gt;Secondly, I have managed to get Home Assistant working with a Bluetooth speaker. Why you might ask, well, I had one sat doing nothing and thought it would be nice to announce stuff (like door open, play a doorbell sound etc). At the moment, I do not have an Echo or Google speaker to make us of so this is the next best thing. Anyway, please watch the video below. I am working on my presentation skills.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Speakers are, well, speakers.&lt;/p&gt;
+&lt;p&gt;You have to have something that decodes audio files and send plain PCM to the speakers.&lt;/p&gt;
+&lt;p&gt;Unless HA, at some point, includes a &amp;ldquo;local&amp;rdquo; media player the same way it included a &amp;ldquo;local&amp;rdquo; media browser, you have to attach the speaker to an actual &amp;ldquo;media_player&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The custom component mentioned above is doing basically that. Create a local media_player to which to attach the speakers to, via PulseAudio, which is one of the sound servers available on Linux.&lt;/p&gt;
+&lt;p&gt;And yeah, sound is a mess under Linux, which makes it more complicated than it should be&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;You need to use one of the media player services to load with media (or some other control system outside home assistant).https://www.home-assistant.io/integrations/media_player/&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;How to Configure Bluetooth On Debian 11&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Installing Bluetooth Drivers&lt;/p&gt;
+&lt;p&gt;Getting the Bluetooth Adapter Ready&lt;/p&gt;
+&lt;p&gt;Using GNOME Bluetooth to Connect to Bluetooth Devices&lt;/p&gt;
+&lt;p&gt;Using Bluedevil to Connect to Bluetooth Devices&lt;/p&gt;
+&lt;p&gt;Using Blueman to Connect to Bluetooth Devices&lt;/p&gt;
+&lt;p&gt;Conclusion&lt;/p&gt;
+&lt;p&gt;References&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;check bluez run ok or not&lt;/p&gt;
+&lt;p&gt;check alsa run ok or not&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;step 1:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;step 2:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;step 3:How to route audio from VLC and Media Player Classic to specific audio device&lt;/p&gt;
+&lt;h2&gt;&amp;nbsp;&lt;/h2&gt;
+&lt;h2&gt;&amp;nbsp;&lt;/h2&gt;
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;RaspberryPi Model 3B+&lt;/p&gt;
+&lt;p&gt;A bluetooth speaker. In this case a&amp;nbsp;newmine BT73&amp;nbsp;has been used.&lt;/p&gt;
+&lt;p&gt;Raspberry Pi with bluetooth interface(onboard bluetooth controller of&amp;nbsp; Raspberry Pi.)&lt;/p&gt;
+&lt;p&gt;Home Assistant Core installed and running on Raspberry&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Play Bluetooth Audio on a Raspberry Pi: get some music&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll need some music files.&amp;nbsp; downloaded from:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://magpi.cc/PAFSkv" target="_blank" rel="noopener"&gt;Sampler EP Vol. 9 by Vulpiano Records Artists from Free Music Archive&lt;/a&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Part one: Make sure that Bluetooth is enabled and running&lt;/h2&gt;
+&lt;p&gt;I have already setup a device tracker with Bluetooth on my Hassio, which is already running on a Raspberry Pi 3b+, and has registered the Bluetooth speaker.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;How to connect a bluetooth device from the command line&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a title="Find bluetooth speaker 连接蓝牙音箱" href="https://www.msly.cn/boards/topic/3204/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%80%9A%E8%BF%87%E8%87%AA%E5%B8%A6bluealsa%E8%BF%9E%E6%8E%A5%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E6%8E%A5%E5%85%A5home-assistnant#3566" target="_blank" rel="noopener"&gt;Step 2. Find bluetooth speaker 连接蓝牙音箱&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Test Bluetooth speaker with some audio play ok&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.msly.cn/boards/topic/3206/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%80%9A%E8%BF%87linux%E4%B8%AD%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88bluz%E8%BF%9E%E6%8E%A5%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E6%8E%A5%E5%85%A5home-assistnant/page/2#3686" target="_blank" rel="noopener"&gt;Make Bluetooth speaker as default audio speaker output&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Part two:Add Bluetooth discovery to Pulse Audio&lt;/h2&gt;
+&lt;p&gt;This only enables hassio to track BT devices nearby. This does not allow to connect and USE the speaker as an audio output.&lt;/p&gt;
+&lt;p&gt;in the known_devices.yaml you can find the MAC address of the bluetooth device.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Part three:connect a Bluetooth speaker to HA&lt;/h2&gt;
+&lt;p&gt;In the latest Home Assistant release &amp;ndash; Media browser was renamed to just Media.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;integration support of Plex, VLC, Libre Elec, Apple TV, Spotify and more.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Useful links&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.raspberrypi.com/documentation/computers/os.html#how-to-play-audio" target="_blank" rel="noopener"&gt;https://www.raspberrypi.com/documentation/computers/os.html#how-to-play-audio&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2 dir="auto" style="box-sizing: border-box; margin-top: 24px; margin-bottom: 16px; line-height: 1.25; padding-bottom: 0.3em; border-bottom: 1px solid var(--color-border-muted); color: #24292f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';"&gt;&amp;nbsp;&lt;/h2&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>home assistant</category>
+    <category>bluetooth speaker</category>
+    <category>speaker</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+    <tag>raspberry pi 3b+</tag>
+  </tags>
+  <comments></comments>
+</post>

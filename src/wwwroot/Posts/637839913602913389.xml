@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>msly home assisant project</title>
+  <slug>msly-home-assisant-project-part-1</slug>
+  <pubDate>2022-03-27T15:35:29.778Z</pubDate>
+  <lastModified>2022-04-10T14:26:56.532Z</lastModified>
+  <excerpt>my home assisant project
+&lt;p&gt;Step 2: Login to the PI Through a Monitor/keyboard or Network SSH&lt;/p&gt;
+
+&lt;p&gt;
+Track Home/Away Status for Your Household Using Their Smart Phones Home Assistant app
+&lt;/p&gt;</excerpt>
+  <content>&lt;h2&gt;Hardware Requirements&lt;/h2&gt;
+
+
+
+
+I&amp;rsquo;m using the following hardware for my setup:
+
+
+
+
+
+
+
+&lt;pre class="language-markup"&gt;&lt;code&gt;Raspberry Pi 3b+
+Micro SD Card 4G
+Power Supply
+Bluetooth Adapter On Pi3b+
+Ethernet Cable 
+keyboard
+Mouse
+Monitor
+Bluetooth Speaker:mode  NewMine BT73
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+
+
+&lt;h2&gt;Environment&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;h2&gt;Installation methods&lt;/h2&gt;
+
+
+
+
+[color=#222222; font-family: 'Open Sans', Ubuntu, 'Nimbus Sans L', Avenir, AvenirNext, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 19px]The configuration is based on a Home Assistant Core installation.[/color]
+Python3.9 virtual environment + Home Assistant Core
+
+
+
+
+
+
+
+
+
+
+
+[color=#212529; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 18px]Below we have included a list of the equipment that you will need to set up your Raspberry Pi powered Bluetooth speakers.[/color]
+
+
+
+
+
+
+
+Step 1: Prepare SD for Base Operating System
+
+
+
+Step 2: Login to the PI Through a Monitor/keyboard or Network SSH
+
+
+
+
+
+
+
+[url=https://www.msly.cn/boards/topic/57/installing-home-assistant-core-on-raspberry-pi-3b/page/2#2324][color=#444444; font-family: Arial, Helvetica, sans-serif]Restart hass[/color][/url]
+
+
+
+
+
+Track Home/Away Status for Your Household Using Home Assistant
+
+way 1:detect presence is by checking which devices are connected to the network. 
+
+
+
+way 2: run an app on your phone to provide detailed location information to your Home Assistant instance.</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>home assistant</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+  </tags>
+  <comments></comments>
+</post>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Bluez4 A2DP</title>
+  <slug>Bluez-A2DP</slug>
+  <pubDate>2022-03-27T13:30:57.855Z</pubDate>
+  <lastModified>2022-03-27T13:33:27.160Z</lastModified>
+  <excerpt>Bluez A2DP
+This diagram summarises the events and sequences when a remote bluetooth device starts an A2DP protocol connection to start audio streaming.</excerpt>
+  <content>&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;This diagram summarises the events and sequences when a remote bluetooth device starts an A2DP protocol connection to start audio streaming.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/Posts/files/bluez4-a2dp-overview_637839846578730010.png" alt="bluez4-a2dp-overview.png" width="789" height="954" /&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.lightofdawn.org/blog/?viewDetailed=00032" target="_blank" rel="noopener"&gt;http://www.lightofdawn.org/blog/?viewDetailed=00032&lt;/a&gt;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories></categories>
+  <tags></tags>
+  <comments></comments>
+</post>

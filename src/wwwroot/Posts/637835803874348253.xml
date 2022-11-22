@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Track Home/Away Status for Your Household Using Their Smart Phones and Home Assistant</title>
+  <slug>device-tracker-smart-mobile-phones-home-assisant-part-1</slug>
+  <pubDate>2022-03-22T21:24:48.625Z</pubDate>
+  <lastModified>2022-03-30T16:45:36.086Z</lastModified>
+  <excerpt>Device tracker (specifically mobile phones) 
+Raspberry Pi 3B Raspberry Pi 3B+
+Track Home/Away Status for Your Household Using Their Smart Phones and Home Assistant</excerpt>
+  <content>&lt;p&gt;Device tracker (smart mobile phones)&amp;nbsp; on Home Assisant&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;I have a&amp;nbsp;person&amp;nbsp;consisting of 2&amp;nbsp;device_tracker&amp;nbsp;- a local one (nmap) and a GPS (HA companion app on mobile device).&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Track Home/Away Status for Your Household Using Their Smart Phones and Home Assistant&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="margin: 0px; padding: 0px; box-sizing: border-box; color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;a href="https://www.msly.cn/boards/topic/2187/track-homeaway-status-for-your-household-using-their-smart-phones-and-home-assistant" target="_blank" rel="noopener"&gt;https://www.msly.cn/boards/topic/2187/track-homeaway-status-for-your-household-using-their-smart-phones-and-home-assistant&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;There are different ways of setting up presence detection.&lt;/p&gt;
+&lt;h2&gt;Way 1:detect presence is by checking which devices are connected to our supported routers.&amp;nbsp;&lt;/h2&gt;
+&lt;p&gt;Usually the easiest way to detect presence is by checking which devices are connected to the network. You can do that if you have one of our supported routers. By leveraging what your router already knows, you can easily detect if people are at home.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Way 2:detect presence is by run Home Assistant Companion app on your phone which provide detailed location information to your Home Assistant instance .&amp;nbsp;&lt;/h2&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s also possible to run an app on your phone to provide detailed location information to your Home Assistant instance. For iOS and Android, we suggest using the Home Assistant Companion app.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;During the setup of Home Assistant Companion on your mobile device, the app will ask for permission to allow the device&amp;rsquo;s location to be provided to Home Assistant. Allowing this will create a device_tracker entity for that device which can be used in automations and conditions.&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>raspberry pi</category>
+    <category>track home/away</category>
+  </categories>
+  <tags>
+    <tag>raspberry pi 3b+</tag>
+    <tag>track home/away</tag>
+  </tags>
+  <comments></comments>
+</post>

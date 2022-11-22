@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Home Assistant Remote access - local host test</title>
+  <slug>home-assistant-remote-access-part-2</slug>
+  <pubDate>2022-03-30T17:24:52.931Z</pubDate>
+  <lastModified>2022-03-30T18:08:19.691Z</lastModified>
+  <excerpt>Home Assistant Remote access - local host test</excerpt>
+  <content>&lt;p&gt;failure&lt;/p&gt;
+&lt;p&gt;windows 10&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;C:\Windows\System32\drivers\etc\hosts.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;# Copyright (c) 1993-2009 Microsoft Corp.
+
+
+192.168.101.50 hatest.msly.cn&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;C:\Users\Administrator2&amp;gt;ipconfig /flushdns&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;C:\Users\Administrator2&amp;gt;ping hatest.msly.cn
+
+正在 Ping hatest.msly.cn [192.168.101.50] 具有 32 字节的数据:
+来自 192.168.101.50 的回复: 字节=32 时间&amp;lt;1ms TTL=64
+来自 192.168.101.50 的回复: 字节=32 时间=2ms TTL=64
+来自 192.168.101.50 的回复: 字节=32 时间&amp;lt;1ms TTL=64
+来自 192.168.101.50 的回复: 字节=32 时间&amp;lt;1ms TTL=64&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Step 2:test&lt;/p&gt;
+&lt;p&gt;visit url:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;http://hatest.msly.cn/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;http://hatest.msly.cn:8123/auth/authorize?response_type=code&amp;amp;redirect_uri=http%3A%2F%2Fhatest.msly.cn%3A8123%2F%3Fauth_callback%3D1&amp;amp;client_id=http%3A%2F%2Fhatest.msly.cn%3A8123%2F&amp;amp;state=eyJoYXNzVXJsIjoiaHR0cDovL2hhdGVzdC5tc2x5LmNuOjgxMjMiLCJjbGllbnRJZCI6Imh0dHA6Ly9oYXRlc3QubXNseS5jbjo4MTIzLyJ9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Success&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Step 3: Install nginx&amp;nbsp;&amp;nbsp;on raspberry pi（raspberry pi 3B+）&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://home-assisant.msly.cn/blog/home-assistant-remote-access-part-3/" target="_blank" rel="noopener"&gt;How To Install and uninstall reinstall Nginx on raspberry pi（raspberry pi 3B+）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;visit:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;http://hatest.msly.cn/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;http://hatest.msly.cn:8123/auth/authorize?response_type=code&amp;amp;redirect_uri=http%3A%2F%2Fhatest.msly.cn%3A8123%2F%3Fauth_callback%3D1&amp;amp;client_id=http%3A%2F%2Fhatest.msly.cn%3A8123%2F&amp;amp;state=eyJoYXNzVXJsIjoiaHR0cDovL2hhdGVzdC5tc2x5LmNuOjgxMjMiLCJjbGllbnRJZCI6Imh0dHA6Ly9oYXRlc3QubXNseS5jbjo4MTIzLyJ9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>home assistant remote access</category>
+    <category>home assistant</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+    <tag>home assistant remote access</tag>
+  </tags>
+  <comments></comments>
+</post>

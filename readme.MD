@@ -46,7 +46,7 @@ sudo systemctl restart kestrel-home-assisant.msly.cn.service
 
 
 
---------------------tool.msly.cn debug-----------------------------
+--------------------home-assisant.msly.cn debug-----------------------------
 
 sudo systemctl stop kestrel-home-assisant.msly.cn.service
 

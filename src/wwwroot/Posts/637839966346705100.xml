@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Raspberry PI﻿ into a simple Bluetooth audio receiver</title>
+  <slug>Raspberry-PI﻿-Bluetooth-audio-receiver</slug>
+  <pubDate>2022-03-27T16:55:45.860Z</pubDate>
+  <lastModified>2022-03-27T16:55:45.868Z</lastModified>
+  <excerpt>Raspberry PI﻿ into a simple Bluetooth audio receiver</excerpt>
+  <content>&lt;p&gt;This tutorial will turn your&amp;nbsp;Raspberry PI&amp;nbsp;into a simple Bluetooth audio receiver, which plays music through connected speakers.&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;Audio source (i.e. smartphone) 
+                |
+                v
+ (((  Wireless Bluetooth Channel  )))
+                |
+                v
+           Raspberry PI
+                |
+                v
+       USB Audio Interface
+                |
+                v
+             Speakers&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The Bluetooth profile which does the magic is called&amp;nbsp;A2DP.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://gist.github.com/oleq/24e09112b07464acbda1"&gt;https://gist.github.com/oleq/24e09112b07464acbda1&lt;/a&gt;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>bluetooth speaker</category>
+    <category>speaker</category>
+  </categories>
+  <tags></tags>
+  <comments></comments>
+</post>

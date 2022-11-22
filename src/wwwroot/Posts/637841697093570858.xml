@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Track Home/Away Status - Device Tracker Nmap Tracker</title>
+  <slug>device-tracker-smart-mobile-phones-home-assisant-part-2</slug>
+  <pubDate>2022-03-29T17:02:27.722Z</pubDate>
+  <lastModified>2022-03-29T18:17:05.652Z</lastModified>
+  <excerpt>Track Home/Away Status - Device Tracker Nmap Tracker</excerpt>
+  <content>&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;If you are running Home Assistant Core in a Python virtual environment, you might have to install the packages for &lt;strong&gt;arp&lt;/strong&gt; and &lt;strong&gt;nmap&lt;/strong&gt;. On Debian based hosts (for example Raspbian) do so by running &lt;strong&gt;sudo apt-get install net-tools nmap&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Step 1:install the packages for&amp;nbsp;&amp;nbsp;&lt;strong&gt;nmap&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;sudo apt-get install net-tools nmap&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;正在设置 nmap (7.91+dfsg1+really7.80+dfsg1-2) ...
+正在处理用于 man-db (2.9.4-2) 的触发器 ...
+正在处理用于 libc-bin (2.31-13+rpi1+deb11u2) 的触发器 ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;what happend when&amp;nbsp; run arp and amp to test?&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;root@raspberrypi:~# arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.101.1            ether   14:3c:c3:19:e9:a6   C                     enxb827eb803c50
+192.168.101.45           ether   66:c3:a8:01:ee:9f   C                     enxb827eb803c50
+192.168.101.21           ether   24:4b:c3:55:56:41   C                     enxb827eb803c50
+192.168.101.49           ether   16:12:ae:f9:c3:7a   C                     enxb827eb803c50
+192.168.101.53                   (incomplete)                              enxb827eb803c50
+192.168.101.22           ether   44:8a:5b:c3:d0:ff   C                     enxb827eb803c50
+192.168.101.6            ether   88:da:33:77:ae:c3   C                     enxb827eb803c50
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;root@raspberrypi:~# nmap -v -sn 192.168.101.0/24 
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-03-30 02:03 CST
+Initiating ARP Ping Scan at 02:03
+Scanning 255 hosts [1 port/host]
+Completed ARP Ping Scan at 02:03, 2.74s elapsed (255 total hosts)
+Initiating Parallel DNS resolution of 255 hosts. at 02:03
+Completed Parallel DNS resolution of 255 hosts. at 02:03, 0.02s elapsed
+Nmap scan report for 192.168.101.0 [host down]
+Nmap scan report for 192.168.101.1
+Host is up (0.00076s latency).
+MAC Address: 14:3C:C3:19:E9:A6 (Huawei Technologies)
+Nmap scan report for 192.168.101.2 [host down]
+Nmap scan report for 192.168.101.3 [host down]
+Nmap scan report for 192.168.101.4 [host down]
+Nmap scan report for 192.168.101.5 [host down]
+Nmap scan report for 192.168.101.6
+Host is up (0.013s latency).
+MAC Address: 88:DA:83:97:AE:35 (Beijing Xiaoyuer Network Technology)
+Nmap scan report for 192.168.101.7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Step 3:Add nmap integration&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nmap Tracker&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The previously deprecated YAML &lt;span style="background-color: #ffffff;"&gt;configuration&lt;/span&gt; of the Nmap Tracker integration has been removed.&lt;/p&gt;
+&lt;p&gt;&lt;span style="background-color: #ffffff; color: #ff0000;"&gt;&lt;strong&gt;Nmap Tracker is now configured via the UI&lt;/strong&gt;&lt;/span&gt;, any existing YAML configuration has been imported in previous releases and can now be safely removed from your YAML configuration files.&lt;/p&gt;
+&lt;p&gt;The configuration.yaml is no longer the place to configure / provision everything. You add integrations via UI, see devices in the UI and entities in the UI. When running HA OS (formerly HASS.IO) there is even such thing like &amp;ldquo;add-ons&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;You hat the nmap integration in your configuration.yaml and is has been moved to the UI-oriented integration setup long time ago. So when click on settings, then &amp;ldquo;Integrations&amp;rdquo; in the &amp;ldquo;Devices &amp;amp; Services&amp;rdquo; box, you should find the Nmap Tracker 6 integration there. From there, you can see all the entities it generates.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Step 4:&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;Name
+Entity ID
+Integration
+Area
+Disabled by
+Status
+
+device_tracker.nmap_tracker_14_3c_c3_19_e9_a6
+device_tracker.nmap_tracker_14_3c_c3_19_e9_a6
+Nmap Tracker
+&amp;mdash;
+Integration&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Step 5: Person&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;look as follow:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>home assistant</category>
+    <category>track home/away</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+    <tag>track home/away</tag>
+  </tags>
+  <comments></comments>
+</post>

@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>How To Compile &amp; Install and uninstall reinstall BlueZ 5.64 on on raspberry pi 3b+</title>
+  <slug>home-assisant-connect-bluetooth-speaker-part-4</slug>
+  <pubDate>2022-03-27T18:50:27.502Z</pubDate>
+  <lastModified>2022-04-03T17:02:11.185Z</lastModified>
+  <excerpt>How To Install and uninstall reinstall BlueZ 5.64 on on raspberry pi 3b+</excerpt>
+  <content>&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Install BlueZ 5.64&lt;/h2&gt;
+&lt;p&gt;OS：Raspbian GNU/Linux 11 (bullseye)&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;No LSB modules are available.
+Distributor ID:	Raspbian
+Description:	Raspbian GNU/Linux 11 (bullseye)
+Release:	11
+Codename:	bullseye&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Bluez is the default Bluetooth protocol stack on Linux. It should be present and installed on your Linux distribution. If not, building and installing from source is not too difficult:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Download the latest stable source release of Bluez from here. Unzip the compressed file you downloaded.&lt;/p&gt;
+&lt;p&gt;Install the headers and libraries required for Bluez compilation:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Step 1：Update the operating system&lt;/h2&gt;
+&lt;p&gt;Old Os:&lt;span style="font-family: 'Courier New', Courier, monospace;"&gt;Raspbian GNU/Linux 9.4 (stretch)&lt;/span&gt;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;lsb_release -a
+
+root@raspberrypi:~# lsb_release -a
+No LSB modules are available.
+Distributor ID:  Raspbian
+Description:  Raspbian GNU/Linux 9.4 (stretch)
+Release:  9.4
+Codename:  stretch&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Open a Terminal window and enter the following commands.&lt;/p&gt;
+&lt;p&gt;Follow the installation instructions for Raspbian&amp;nbsp;as follow:&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get -y dist-upgrade &amp;amp;&amp;amp; sudo apt-get update&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;New OS:Raspbian GNU/Linux 11 (bullseye)&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;#update the package list
+sudo apt-get update 
+sudo apt-get -y dist-upgrade&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;2. Download And Install&amp;nbsp;BlueZ 5.64 on raspberry pi 3b+&lt;/h2&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Download the most recent version from the official page:http://www.bluez.org/download/.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;For example, at the time of writing it was 5.50, so I used(on my pi):&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.64.tar.xz&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Then I extracted it and built it:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;tar -xf bluez-5.64.tar.xz
+
+cd bluez-5.64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;**Read the README! **It lists the dependencies and the configure switches:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Install Bluez5.64 dependencies&amp;nbsp; (Required.)&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;sudo apt install dbus-1.14.0 GLib-2.72.0 libical-3.0.14  # failure
+
+sudo apt install libdbus-1-dev libudev-dev libical-dev libreadline-dev  #success
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;note: If you do not install the libdbus-1-dev, you will later get this strange error:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;configure: error: D-Bus &amp;gt;= 1.6 is required&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;once you've installed dependencies, you can configure switches:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre class="language-csharp"&gt;&lt;code&gt;./configure --prefix=/usr         \
+            --sysconfdir=/etc     \
+            --localstatedir=/var  \
+            --disable-manpages    \
+            --enable-library  &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;then do:&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;make
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;GEN      src/bluetooth.service
+CCLD     src/bluetoothd
+GEN      obexd/src/obex.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It takes maybe&amp;nbsp;&amp;nbsp;10 minutes to compile. After installing, you should find bluetoothd in /usr/libexec/bluetooth. You should also see bluetoothd in /usr/lib/bluetooth.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #222222; font-family: verdana, tahoma, helvetica, arial, sans-serif; font-size: 16px;"&gt;Now, as the&amp;nbsp;&lt;/span&gt;&lt;code class="systemitem" style="font-style: italic; color: #222222;"&gt;root&lt;/code&gt;&lt;span style="color: #222222; font-family: verdana, tahoma, helvetica, arial, sans-serif; font-size: 16px;"&gt;&amp;nbsp;user:&lt;/span&gt;&lt;/p&gt;
+&lt;pre class="language-markup"&gt;&lt;code&gt;sudo make install&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;make --no-print-directory install-am
+ /bin/mkdir -p '/usr/bin'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c client/bluetoothctl monitor/btmon tools/rctest tools/l2test tools/l2ping tools/bccmd tools/bluemoon tools/hex2hcd tools/mpris-proxy tools/btattach '/usr/bin'
+libtool: install: /usr/bin/install -c client/bluetoothctl /usr/bin/bluetoothctl
+libtool: install: /usr/bin/install -c monitor/btmon /usr/bin/btmon
+libtool: install: /usr/bin/install -c tools/rctest /usr/bin/rctest
+libtool: install: /usr/bin/install -c tools/l2test /usr/bin/l2test
+libtool: install: /usr/bin/install -c tools/l2ping /usr/bin/l2ping
+libtool: install: /usr/bin/install -c tools/bccmd /usr/bin/bccmd
+libtool: install: /usr/bin/install -c tools/bluemoon /usr/bin/bluemoon
+libtool: install: /usr/bin/install -c tools/hex2hcd /usr/bin/hex2hcd
+libtool: install: /usr/bin/install -c tools/mpris-proxy /usr/bin/mpris-proxy
+libtool: install: /usr/bin/install -c tools/btattach /usr/bin/btattach
+ /bin/mkdir -p '/usr/libexec/bluetooth'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c src/bluetoothd obexd/src/obexd '/usr/libexec/bluetooth'
+libtool: install: /usr/bin/install -c src/bluetoothd /usr/libexec/bluetooth/bluetoothd
+libtool: install: /usr/bin/install -c obexd/src/obexd /usr/libexec/bluetooth/obexd
+ /bin/mkdir -p '/usr/lib/cups/backend'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c profiles/cups/bluetooth '/usr/lib/cups/backend'
+libtool: install: /usr/bin/install -c profiles/cups/bluetooth /usr/lib/cups/backend/bluetooth
+ /bin/mkdir -p '/etc/dbus-1/system.d'
+ /usr/bin/install -c -m 644 src/bluetooth.conf '/etc/dbus-1/system.d'
+ /bin/mkdir -p '/usr/share/dbus-1/services'
+ /usr/bin/install -c -m 644 obexd/src/org.bluez.obex.service '/usr/share/dbus-1/services'
+ /bin/mkdir -p '/usr/share/dbus-1/system-services'
+ /usr/bin/install -c -m 644 src/org.bluez.service '/usr/share/dbus-1/system-services'
+ /bin/mkdir -p '/usr/share/zsh/site-functions'
+ /usr/bin/install -c -m 644 completion/zsh/_bluetoothctl '/usr/share/zsh/site-functions'
+ /bin/mkdir -p '/usr/share/man/man1'
+ /usr/bin/install -c -m 644 tools/rctest.1 tools/l2ping.1 tools/bccmd.1 tools/btattach.1 '/usr/share/man/man1'
+ /bin/mkdir -p '/usr/share/man/man8'
+ /usr/bin/install -c -m 644 src/bluetoothd.8 '/usr/share/man/man8'
+ /bin/mkdir -p '/lib/systemd/system'
+ /usr/bin/install -c -m 644 src/bluetooth.service '/lib/systemd/system'
+ /bin/mkdir -p '/usr/lib/systemd/user'
+ /usr/bin/install -c -m 644 obexd/src/obex.service '/usr/lib/systemd/user'&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Go to each of these directories and type&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;bluetoothd --version&lt;/p&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;5.55
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;You'll note that the one in libexec is new and the one in lib is old.&lt;/p&gt;
+&lt;p&gt;old&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;root@raspberrypi:~# systemctl status bluetooth&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-java"&gt;&lt;code&gt;root@raspberrypi:~# systemctl status bluetooth
+Warning: The unit file, source configuration file or drop-ins of bluetooth.service changed on disk. Run 's&amp;gt;
+● bluetooth.service - Bluetooth service
+     Loaded: loaded (/lib/systemd/system/bluetooth.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sun 2022-03-27 04:45:13 CST; 33min ago
+       Docs: man:bluetoothd(8)
+   Main PID: 419 (bluetoothd)
+     Status: "Running"
+      Tasks: 1 (limit: 2200)
+     Memory: 4.1M
+        CPU: 218ms
+     CGroup: /system.slice/bluetooth.service
+             └─419 /usr/libexec/bluetooth/bluetoothd --noplugin=sap,sixaxis
+
+3月 27 04:45:13 raspberrypi systemd[1]: Starting Bluetooth service...
+3月 27 04:45:13 raspberrypi bluetoothd[419]: Bluetooth daemon 5.55
+3月 27 04:45:13 raspberrypi systemd[1]: Started Bluetooth service.
+3月 27 04:45:13 raspberrypi bluetoothd[419]: Starting SDP server
+3月 27 04:45:13 raspberrypi bluetoothd[419]: Excluding (cli) sap
+3月 27 04:45:13 raspberrypi bluetoothd[419]: Excluding (cli) sixaxis
+3月 27 04:45:14 raspberrypi bluetoothd[419]: Bluetooth management interface 1.14 initialized
+3月 27 04:45:14 raspberrypi bluetoothd[419]: Failed to set mode: Blocked through rfkill (0x12)
+3月 27 04:45:14 raspberrypi bluetoothd[419]: Endpoint registered: sender=:1.10 path=/A2DP/SBC/Source/1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;pre style="border: 0px; margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 1em; overflow: auto; width: 1507px; direction: ltr; color: #222222;"&gt;&lt;code style="font-size: 1em; padding: 0.5em; display: inline-block;"&gt;systemctl list-unit-files | grep blue &lt;br /&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre style="border: 0px; margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 1em; overflow: auto; width: 1507px; direction: ltr;"&gt;&lt;code style="font-size: 1em; padding: 0.5em; display: inline-block;"&gt;sudo systemctl disable blueman-mechanism.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre style="border: 0px; margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 1em; overflow: auto; width: 1507px; direction: ltr; color: #222222;"&gt;&lt;code style="font-size: 1em; padding: 0.5em; display: inline-block;"&gt;&lt;span style="font-size: 1em; font-family: Verdana, Arial, Helvetica, sans-serif;"&gt;sudo systemctl disable bluetooth-mesh.service&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;In order to make sure that d-bus is talking to you new BlueZ 5.50 and not your old BlueZ 5.43, you need to tell systemd to use the new bluetooth daemon:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo vim /lib/systemd/system/bluetooth.service&lt;/p&gt;
+&lt;p&gt;Make sure the exec.start line points to your new daemon in /usr/libexec/bluetooth.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;For me, that wasn't enough. No matter what, upon restart I always got bluetoothd 5.43... So I just created a symlink from the old one to the new.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;First rename the old file:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo mv /usr/lib/bluetooth/bluetoothd /usr/lib/bluetooth/bluetoothd-543.orig&lt;/p&gt;
+&lt;p&gt;Create the symlink:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo ln -s /usr/libexec/bluetooth/bluetoothd /usr/lib/bluetooth/bluetoothd&lt;/p&gt;
+&lt;p&gt;sudo systemctl daemon-reload&lt;/p&gt;
+&lt;p&gt;That should do it.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;3. How to use the bluez and hcitool&lt;/p&gt;
+&lt;p&gt;3.1 setup bluetooth service&lt;/p&gt;
+&lt;p&gt;Start the bluetooth service and enable automatic startup, assuming you're using systemd as the init daemon:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo systemctl start bluetooth.service&lt;/p&gt;
+&lt;p&gt;sudo systemctl enable bluetooth.service&lt;/p&gt;
+&lt;p&gt;3.2 hcitool scan for bluetooth devices&lt;/p&gt;
+&lt;p&gt;Before start scanning make sure that your bluetooth device is turned on and not blocked, you can check that with the rfkill command:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo rfkill list&lt;/p&gt;
+&lt;p&gt;If the bluetooth device is blocked (soft or hard blocked), unblock it with the rfkill command again:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo rfkill unblock bluetooth&lt;/p&gt;
+&lt;p&gt;Bring up the bluetooth device with hciconfig command and start scanning, make sure the target device's bluetooth is on and It's discoverable:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo hciconfig hci0 up&lt;/p&gt;
+&lt;p&gt;hcitool scan&lt;/p&gt;
+&lt;p&gt;Wait few moment to complete the hcitool scan or hcitool lescan, the results will be something like bellow:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Here 00:1A:7D:DA:71:0A is the bluetooth MAC address and SHEN-PC is the name of the bluetooth device, i.e. an PC.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;note: use hcitool lescan will forever scan ble devices, if use ctrl+c stop it, it will show error(ref to LINKS 4 to solve):&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;hcitool lescan&lt;/p&gt;
+&lt;p&gt;Set scan parameters failed: Input/output error&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;3.3 bluetooth service discovery&lt;/p&gt;
+&lt;p&gt;Now we have the bluetooth MAC address of the target device, use the sdptool command to know which services (like DUN, Handsfree audio) are available on that target device.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sdptool browse 28:ED:6A:A0:26:B7&lt;/p&gt;
+&lt;p&gt;You can also use the interactive bluetoothctl tool for this purpose.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;If the target device is present, you can ping it with l2ping command, requires root privilege:&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;➜&amp;nbsp; bluez-5.50&amp;nbsp; sudo l2ping 94:87:E0:B3:AC:6F&lt;/p&gt;
+&lt;p&gt;Ping: 94:87:E0:B3:AC:6F from B8:27:EB:8E:CC:51 (data size 44) ...&lt;/p&gt;
+&lt;p&gt;44 bytes from 94:87:E0:B3:AC:6F id 0 time 53.94ms&lt;/p&gt;
+&lt;p&gt;44 bytes from 94:87:E0:B3:AC:6F id 1 time 77.12ms&lt;/p&gt;
+&lt;p&gt;44 bytes from 94:87:E0:B3:AC:6F id 2 time 38.63ms&lt;/p&gt;
+&lt;p&gt;44 bytes from 94:87:E0:B3:AC:6F id 3 time 46.13ms&lt;/p&gt;
+&lt;p&gt;44 bytes from 94:87:E0:B3:AC:6F id 4 time 59.96ms&lt;/p&gt;
+&lt;p&gt;5 sent, 5 received, 0% loss&lt;/p&gt;
+&lt;p&gt;So, bluetooth service discovery is useful to determine the type of the device, like if it's a bluetooth mp3 player or it's a keyboard.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://linuxfromscratch.org/blfs/view/systemd//general/bluez.html#:~:text=Install%20BlueZ%20by%20running%20the%20following%20commands%3A.%2Fconfigure%20--prefix%3D%2Fusr,root%20user%3A%20make%20install%20%26%26%20ln%20-svf..%2Flibexec%2Fbluetooth%2Fbluetoothd%20%2Fusr%2Fsbin"&gt;README&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;y&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>bluetooth speaker</category>
+    <category>speaker</category>
+    <category>home assistant</category>
+    <category>raspberry pi</category>
+  </categories>
+  <tags>
+    <tag>home assistant</tag>
+  </tags>
+  <comments></comments>
+</post>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Installing Home Assistant Core  on Raspberry Pi 3B+ step by step (version 2022.11.4)</title>
+  <slug>Installing-Home-Assistant-Core-Raspberry-Pi-3B+-step-by-step-20221103</slug>
+  <pubDate>2022-11-22T15:33:16.966Z</pubDate>
+  <lastModified>2022-11-22T20:12:43.751Z</lastModified>
+  <excerpt>Installing Home Assistant Core 2022.11.3 on Raspberry Pi 3B+ step by step</excerpt>
+  <content>&lt;h1&gt;&lt;span style="color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Installing Home Assistant Core 2022.11.3 on Raspberry Pi 3B+ step by step&lt;/span&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;span style="color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Host Operation System&lt;/span&gt;&lt;/h1&gt;
+&lt;pre class="language-csharp"&gt;&lt;code&gt;root@raspberrypi:~# cat /etc/os-release
+PRETTY_NAME="Raspbian GNU/Linux 11 (bullseye)"
+NAME="Raspbian GNU/Linux"
+VERSION_ID="11"
+VERSION="11 (bullseye)"
+VERSION_CODENAME=bullseye
+ID=raspbian
+ID_LIKE=debian
+HOME_URL="http://www.raspbian.org/"
+SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
+BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h1&gt;Install&amp;nbsp;Home Assistant Core&lt;/h1&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #333333; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 17px;"&gt;run the commands below one by one&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;sudo apt-get update&lt;/p&gt;
+&lt;p&gt;sudo apt-get upgrade -y&lt;/p&gt;
+&lt;p&gt;#&lt;span style="color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Restart the system&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;sudo reboot&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;#&lt;span style="color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Add an account&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;sudo useradd -rm homeassistant20221103 -G dialout,gpio,i2c&lt;/p&gt;
+&lt;p&gt;#create a directory for the installation of Home Assistant Core&lt;/p&gt;
+&lt;p&gt;sudo mkdir /srv/homeassistant20221103&lt;/p&gt;
+&lt;p&gt;#change the owner to the homeassistant20221102 account&lt;br /&gt;sudo chown homeassistant20221103:homeassistant20221103&amp;nbsp; /srv/homeassistant20221103&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo -u homeassistant20221103 -H -s&lt;/p&gt;
+&lt;p&gt;cd /srv/homeassistant20221103&lt;/p&gt;
+&lt;p&gt;#create the virtual environment&lt;/p&gt;
+&lt;p&gt;python3.9 -m venv .&lt;/p&gt;
+&lt;p&gt;#active the virtual environment&lt;/p&gt;
+&lt;p&gt;source bin/activate&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;#&lt;span style="color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;Upgrade to the latest pip&lt;/span&gt;&lt;br /&gt;pip install --upgrade pip&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;#&lt;span style="color: #444444; font-family: Arial, Helvetica, sans-serif;"&gt;install a required Python package&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;python3 -m pip install wheel&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;#Install homeassistant&amp;nbsp; core&lt;br /&gt;pip3 install homeassistant&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;sudo apt autoremove&lt;/p&gt;
+&lt;h1&gt;Trobleshooting&lt;/h1&gt;
+&lt;p&gt;ERROR: Failed building wheel for cryptography&lt;/p&gt;
+&lt;p&gt;#install Rust&lt;/p&gt;
+&lt;p&gt;curl https://sh.rustup.rs -sSf | sh&lt;/p&gt;
+&lt;p&gt;pip3 install pyOpenSSL --upgrade&lt;/p&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre class="language-csharp"&gt;&lt;code&gt;Successfully built cryptography
+Installing collected packages: pycparser, cffi, cryptography, pyOpenSSL
+Successfully installed cffi-1.15.1 cryptography-38.0.3 pyOpenSSL-22.1.0 pycparser-2.21
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+  <ispublished>true</ispublished>
+  <categories></categories>
+  <tags></tags>
+  <comments></comments>
+</post>
