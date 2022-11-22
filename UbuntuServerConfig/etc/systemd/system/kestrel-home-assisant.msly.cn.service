@@ -1,0 +1,17 @@
+[Unit]
+Description=home-assisant-mslycn App running on Ubuntu
+
+[Service]
+WorkingDirectory=/var/www/msly/Miniblog.Core/src/bin/release/net6.0/publish/
+ExecStart=/usr/bin/dotnet  /var/www/msly/Miniblog.Core/src/bin/release/net6.0/publish/Miniblog.Core.dll --urls http://localhost:4699
+Restart=always
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=dotnet-example
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
