@@ -85,3 +85,10 @@ sudo systemctl daemon-reload
 sudo systemctl restart kestrel-home-assisant.msly.cn.service
 
 ~~~
+
+chmod -R 777 /Posts
+
+~~~
+ System.UnauthorizedAccessException: Access to the path '/var/www/msly/Miniblog.Core/src/bin/release/net7.0/publish/wwwroot/Posts/638047680577203709.xml' is denied.
+
+~~~
